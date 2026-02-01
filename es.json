@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "skip": "Saltar al contenido principal",
+    "home": "Inicio",
+    "creators": "Creadores",
+    "services": "Servicios",
+    "benefits": "Beneficios",
+    "testimonials": "Testimonios",
+    "faq": "FAQ",
+    "contact": "Contáctame"
+  },
+  "cta": {
+    "book": "Agenda llamada"
+  },
+  "hero": {
+    "title": "Motion graphics que convierten vistas en leads.",
+    "ctaText": "¿Listo para transformar tus videos? Agenda una llamada y llevemos tu marca al siguiente nivel.",
+    "btnBook": "Agenda llamada"
+  },
+  "creators": {
+    "title": "Creadores con los que he trabajado",
+    "subtitle": "Colaboraciones exitosas con creadores de contenido"
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Especializados en edición de video para redes y campañas",
+    "editing": "Edición — Short form",
+    "editingDesc": "Cortes rápidos, storytelling para redes, adaptaciones por plataforma y entregas optimizadas.",
+    "sound": "Diseño sonoro",
+    "soundDesc": "SFX, foley y mezcla final para lograr impacto emocional y claridad.",
+    "color": "Color grading",
+    "colorDesc": "Corrección y look final para elevar la estética de tu marca.",
+    "motion": "Motion graphics",
+    "motionDesc": "Animaciones y recursos gráficos que comunican y convierten."
+  },
+  "benefits": {
+    "title": "Tu contenido merece generar resultados, no solo vistas.",
+    "engagement": "Engagement que genera conversiones",
+    "engagementDesc": "Nuestros motion graphics capturan atención inmediata y mantienen a tu audiencia comprometida, aumentando las tasas de conversión hasta en un 40%.",
+    "communication": "Comunicación clara y memorable",
+    "communicationDesc": "Transforma conceptos complejos en mensajes visuales impactantes que tu audiencia recordará y compartirá.",
+    "professionalism": "Profesionalismo que inspira confianza",
+    "professionalismDesc": "Eleva la percepción de tu marca con contenido de calidad premium que diferencia tu negocio de la competencia.",
+    "advantages": "Ventajas exclusivas para tu crecimiento",
+    "convertVideos": "Videos que convierten",
+    "convertVideosDesc": "Produzco piezas optimizadas para generar leads y ventas, no solo vistas.",
+    "expressDelivery": "Entrega express sin drama",
+    "expressDeliveryDesc": "Archivos listos para publicar en 48–72 h con revisiones rápidas y coordinadas.",
+    "strategicEditing": "Edición estratégica por plataforma",
+    "strategicEditingDesc": "Versiones específicas (Reels, Shorts, TikTok) con formato, ritmo y estilo ideales.",
+    "scalablePackages": "Paquetes escalables y sin ataduras",
+    "scalablePackagesDesc": "Desde un single edit puntual hasta retainer mensual con prioridad de entrega."
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "subtitle": "Resultados reales que hablan por sí solos",
+    "testimonio1": {
+      "text": "Trabajar con Ariel es sinónimo de compromiso. Siempre responde a tiempo, entrega dentro del plazo y cuida cada detalle de la edición. Es un editor en el que realmente podés confiar.",
+      "name": "Ángelo",
+      "role": "Jefe de equipo de editores"
+    },
+    "testimonio2": {
+      "text": "Responde rápido al feedback y lo aplica con criterio. Nunca hace cambios a ciegas: siempre explica por qué propone una opción u otra, y eso agiliza mucho el cierre del proyecto.",
+      "name": "Marcelo",
+      "role": "Content Specialist"
+    },
+    "testimonio3": {
+      "text": "Es raro encontrar alguien que entienda tan rápido el estilo de uno. Ariel le dio una identidad a mis videos y mis seguidores lo notaron enseguida.",
+      "name": "Jorge",
+      "role": "Creador de contenido"
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Respuestas a las preguntas más comunes",
+    "questions": [
+      {
+        "q": "¿Qué pasa si no tengo una idea clara del estilo que quiero?",
+        "a": "No hay problema. Te ayudo a definir el tono visual, ritmo y referencias según tu objetivo y público."
+      },
+      {
+        "q": "¿Puedo pedir que el video tenga un estilo como el de cierto influencer o marca?",
+        "a": "Claro. Mándame ejemplos o reels de referencia, y adapto el look y ritmo a tu estilo personal o profesional."
+      },
+      {
+        "q": "¿Qué diferencia tu edición de otros editores?",
+        "a": "No solo corto y pego. Cada video se diseña con intención: retención, storytelling y conversión."
+      },
+      {
+        "q": "¿Cuánto tiempo toma una edición estándar?",
+        "a": "Normalmente 48–72 horas para edits tipo social; proyectos largos o con motion graphics pueden tardar más."
+      },
+      {
+        "q": "¿Ofreces entregas urgentes?",
+        "a": "Sí — servicio rush 24 h disponible con tarifa adicional y prioridad en la cola de producción."
+      },
+      {
+        "q": "¿Cuántas rondas de revisiones incluye el precio?",
+        "a": "Incluyo 2 rondas de revisiones gratuitas. Revisiones extra se cobran aparte o se incluyen en planes mensuales."
+      },
+      {
+        "q": "¿Puedo pagar por proyecto o por paquete mensual?",
+        "a": "Ambos. Si produces contenido frecuente, el plan mensual te sale más rentable y con prioridad de entrega."
+      }
+    ]
+  },
+  "contact": {
+    "title": "¿Listo para llevar tu negocio al siguiente nivel?",
+    "email": "Enviar Email",
+    "call": "Agendar Llamada"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados ©"
+  }
+}

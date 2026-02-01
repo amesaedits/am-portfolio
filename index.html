@@ -1,0 +1,1261 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AM — Video Editing & Motion Graphics | Edición Profesional de Video</title>
+  <meta name="description" content="Servicios profesionales de edición de video, color grading, diseño sonoro y motion graphics. Transforma tus videos con resultados medibles." />
+  <meta property="og:title" content="AM — Video Editing & Motion Graphics" />
+  <meta property="og:description" content="Edición de video profesional, color grading, diseño sonoro y motion graphics para marcas y creadores." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tu-dominio.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#071033">
+  <link rel="canonical" href="https://tu-dominio.com" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="script.js" as="script">
+
+  <!-- Calendly link widget begin -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <!-- Calendly link widget end -->
+
+  <!-- Link to separated CSS -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Smooth scroll CSS -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    
+    /* Asegurar que las secciones tengan espacio para el header fijo */
+    section {
+      scroll-margin-top: 80px;
+    }
+    
+    /* Para el home que es el main */
+    main {
+      scroll-margin-top: 80px;
+    }
+
+    /* Asegurar que los carruseles tengan overflow hidden */
+    .creators-carousel {
+        overflow: hidden;
+    }
+
+    .creators-track {
+        will-change: transform;
+    }
+
+    /* Animaciones para carruseles automáticos */
+    @keyframes infiniteLoopHorizontal {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-250px * 6 - 30px * 5));
+      }
+    }
+
+    /* Estilos para el canvas de partículas */
+    #particles-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Asegurar que el contenido de contacto esté sobre las partículas */
+    .contact-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Estilos para el modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #666;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background-color: #f5f5f5;
+    }
+
+    .modal-title {
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      color: #071033;
+      font-size: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-input,
+    .form-textarea,
+    .form-select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus,
+    .form-select:focus {
+      outline: none;
+      border-color: #071033;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-example {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.875rem;
+      color: #666;
+      font-style: italic;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .radio-input {
+      margin-right: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .radio-label {
+      flex: 1;
+    }
+
+    .radio-desc {
+      display: block;
+      font-size: 0.875rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+
+    .form-submit {
+      background-color: #071033;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .form-submit:hover {
+      background-color: #0a1a4d;
+    }
+
+    /* Estilos para centrar el texto del hero */
+    .hero-copy {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Estilos para la nueva sección de proyectos */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .project-card {
+      background: #f8f9fa;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      position: relative;
+      border: 1px solid #e9ecef;
+    }
+
+    /* NOTA: Se han eliminado los estilos .project-card::before y .project-card::after que creaban el botón de play */
+
+    @media (max-width: 768px) {
+      .modal-content {
+        padding: 1.5rem;
+      }
+      
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Navbar -->
+  <header role="banner" aria-label="Barra de navegación principal">
+    <div class="container nav" role="navigation" aria-label="Navegación principal">
+      <div class="brand" itemscope itemtype="https://schema.org/Organization">
+        <a href="#home" class="brand-link">
+          <div class="logo" aria-hidden="true" itemprop="logo">AM</div>
+          <div>
+            <div class="brand-sub muted" itemprop="description"></div>
+          </div>
+        </a>
+      </div>
+
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-expanded="false" aria-controls="main-menu" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="main-menu" aria-label="Primaria">
+        <ul role="list">
+          <!-- LINKS MODIFICADOS - Ahora son anchors nativos -->
+          <li><a href="#home">Inicio</a></li>
+          <li><a href="#creators">Creadores</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+          <li><a href="#services">Servicios</a></li>
+          <li><a href="#benefits">Beneficios</a></li>
+          <li><a href="#testimonials">Testimonios</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contáctame</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Botón modificado para usar Calendly popup -->
+        <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/amesaedits01/new-meeting'});return false;" class="btn">Agenda llamada</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="hero" role="main" aria-labelledby="hero-title">
+    <div class="hero-inner container" id="main-content">
+      <div class="hero-copy">
+        <h1 id="hero-title">Motion graphics que convierten vistas en leads.</h1>
+        
+        <div class="hero-cta">
+          <p style="margin:0">¿Listo para transformar tus videos? Agenda una llamada y llevemos tu marca al siguiente nivel.</p>
+        </div>
+      </div>
+
+      <div class="hero-buttons">
+        <!-- Botón modificado para usar Calendly popup -->
+        <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/amesaedits01/new-meeting'});return false;" class="btn">Agenda llamada</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- CREATORS SECTION -->
+  <section id="creators" aria-labelledby="creators-title" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="creators-title">Creadores con los que he trabajado</h2>
+        <p class="section-sub">Colaboraciones exitosas con creadores de contenido</p>
+      </div>
+
+      <div class="creators-carousel" aria-roledescription="carousel" aria-label="Lista de creadores">
+        <div class="creators-track" role="list">
+          <a href="https://www.instagram.com/ilumiamedia?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="creator-card" role="listitem" tabindex="0">
+            <div class="creator-image">
+              <img src="images/creador1.jpg" alt="Foto de perfil de ilumiamedia" loading="lazy">
+            </div>
+            <h3>ilumiamedia</h3>
+            <p class="muted">2,875 followers</p>
+          </a>
+
+          <a href="https://www.instagram.com/toni_delatorre?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="creator-card" role="listitem" tabindex="0">
+            <div class="creator-image">
+              <img src="images/creador2.jpg" alt="Foto de perfil de tonidelatorre" loading="lazy">
+            </div>
+            <h3>tonidelatorre</h3>
+            <p class="muted">58.4K followers</p>
+          </a>
+
+          <a href="https://www.instagram.com/proveehub?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="creator-card" role="listitem" tabindex="0">
+            <div class="creator-image">
+              <img src="images/creador3.jpg" alt="Foto de perfil de proveehub" loading="lazy">
+            </div>
+            <h3>proveehub</h3>
+            <p class="muted">25.5K followers</p>
+          </a>
+
+          <a href="https://www.instagram.com/joseaguadoes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="creator-card" role="listitem" tabindex="0">
+            <div class="creator-image">
+              <img src="images/creador4.jpg" alt="Foto de perfil de joseaguadoes" loading="lazy">
+            </div>
+            <h3>joseaguadoes</h3>
+            <p class="muted">31.8K followers</p>
+          </a>
+
+          <a href="https://www.instagram.com/renovadentalcenter?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="creator-card" role="listitem" tabindex="0">
+            <div class="creator-image">
+              <img src="images/creador5.jpg" alt="Foto de perfil de renovadentalcenter" loading="lazy">
+            </div>
+            <h3>renovadentalcenter</h3>
+            <p class="muted">12K followers</p>
+          </a>
+
+          <a href="https://www.instagram.com/yentigroup/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" class="creator-card" role="listitem" tabindex="0">
+            <div class="creator-image">
+              <img src="images/creador6.jpg" alt="Foto de perfil de yentigroup" loading="lazy">
+            </div>
+            <h3>yentigroup</h3>
+            <p class="muted">26K followers</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN DE PROYECTOS DESPUÉS DE CREADORES -->
+  <section id="projects" aria-labelledby="projects-title" class="section-padding">
+    <div class="container">
+        <div class="section-header">
+            <h2 id="projects-title">Proyectos</h2>
+            <p class="section-sub">Videos verticales recientes</p>
+        </div>
+
+        <div class="projects-grid" role="list" aria-label="Galería de proyectos">
+            <!-- Video 1: Vimeo (originalmente segundo) -->
+            <div class="project-card" role="listitem" aria-label="Video proyecto 1">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1160642956?h=283e1c21bb&title=0&byline=0&portrait=1&dnt=1&autoplay=0&muted=1&controls=1" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy"
+                            title="Video proyecto 1 - Vimeo"
+                            width="100%"
+                            height="100%">
+                    </iframe>
+                    <div class="video-controls-overlay">
+                        <button class="play-pause-btn" aria-label="Reproducir video">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" fill="white" style="display:none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 2: Vimeo (originalmente primero) -->
+            <div class="project-card" role="listitem" aria-label="Video proyecto 2">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1160641992?h=2a02bde726&title=0&byline=0&portrait=1&dnt=1&autoplay=0&muted=1&controls=1" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy"
+                            title="Video proyecto 2 - Vimeo"
+                            width="100%"
+                            height="100%">
+                    </iframe>
+                    <div class="video-controls-overlay">
+                        <button class="play-pause-btn" aria-label="Reproducir video">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" fill="white" style="display:none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 3: Vimeo (mismo que el primero) -->
+            <div class="project-card" role="listitem" aria-label="Video proyecto 3">
+                <div class="video-wrapper">
+                    <iframe src="https://player.vimeo.com/video/1160653519?title=0&byline=0&portrait=1&dnt=1&autoplay=0&muted=1&controls=1" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy"
+                            title="Video proyecto 3 - Vimeo"
+                            width="100%"
+                            height="100%">
+                    </iframe>
+                    <div class="video-controls-overlay">
+                        <button class="play-pause-btn" aria-label="Reproducir video">
+                            <svg class="play-icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="pause-icon" viewBox="0 0 24 24" fill="white" style="display:none;">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 4: Instagram -->
+            <div class="project-card" role="listitem" aria-label="Video proyecto 4">
+                <div class="video-wrapper">
+                    <div class="instagram-embed">
+                        <blockquote class="instagram-media" 
+                                data-instgrm-permalink="https://www.instagram.com/reel/DPMD001DV2y/"
+                                data-instgrm-captioned
+                                data-instgrm-version="14"
+                                style="background:#FFF; border:0; border-radius:12px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 5: Instagram -->
+            <div class="project-card" role="listitem" aria-label="Video proyecto 5">
+                <div class="video-wrapper">
+                    <div class="instagram-embed">
+                        <blockquote class="instagram-media" 
+                                data-instgrm-permalink="https://www.instagram.com/reel/DPzL2vVjWtd/"
+                                data-instgrm-captioned
+                                data-instgrm-version="14"
+                                style="background:#FFF; border:0; border-radius:12px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video 6: Instagram -->
+            <div class="project-card" role="listitem" aria-label="Video proyecto 6">
+                <div class="video-wrapper">
+                    <div class="instagram-embed">
+                        <blockquote class="instagram-media" 
+                                data-instgrm-permalink="https://www.instagram.com/reel/DQSQMP6ESyF/"
+                                data-instgrm-captioned
+                                data-instgrm-version="14"
+                                style="background:#FFF; border:0; border-radius:12px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <style>
+    /* Estilos para controles de video */
+    .video-wrapper {
+        position: relative;
+        width: 100%;
+        padding-bottom: 177.78%;
+        height: 0;
+        overflow: hidden;
+        background: #000;
+        border-radius: 12px;
+    }
+
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        object-fit: cover;
+    }
+
+    .video-controls-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .project-card:hover .video-controls-overlay {
+        opacity: 1;
+    }
+
+    .play-pause-btn {
+        pointer-events: auto;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: rgba(11, 99, 255, 0.9);
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .play-pause-btn:hover {
+        background: rgba(11, 99, 255, 1);
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .play-pause-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .play-icon, .pause-icon {
+        transition: opacity 0.2s ease;
+    }
+
+    /* Estilos para Instagram embeds */
+    .instagram-embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .instagram-media {
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+    }
+
+    /* Ocultar controles nativos de Vimeo cuando mostramos los nuestros */
+    .video-wrapper iframe::-webkit-media-controls {
+        display: none !important;
+    }
+
+    /* Estado cuando el video está reproduciéndose */
+    .video-wrapper.playing .video-controls-overlay {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .video-wrapper.playing:hover .video-controls-overlay {
+        opacity: 0.3;
+        pointer-events: auto;
+    }
+  </style>
+
+  <!-- SERVICES -->
+  <section id="services" aria-labelledby="services-title" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="services-title">Servicios</h2>
+        <p class="section-sub">Especializados en edición de video para redes y campañas</p>
+      </div>
+
+      <div class="grid" role="list" aria-label="Lista de servicios">
+        <article class="card" role="listitem" aria-labelledby="s1">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 8L16 12L10 16V8Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3 id="s1">Edición — Short form</h3>
+          <p>Cortes rápidos, storytelling para redes, adaptaciones por plataforma y entregas optimizadas.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="s2">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M19 12H5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 15H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 15H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M6 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 9H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 id="s2">Diseño sonoro</h3>
+          <p>SFX, foley y mezcla final para lograr impacto emocional y claridad.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="s3">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M7 8H17V16H7V8Z" fill="currentColor"/>
+              <path d="M17 8H21V16H17" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 8H7V16H3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3 id="s3">Color grading</h3>
+          <p>Corrección y look final para elevar la estética de tu marca.</p>
+        </article>
+
+        <article class="card" role="listitem" aria-labelledby="s4">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M14 2V8H20" stroke="currentColor" stroke-width="2"/>
+              <path d="M16 13H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 17H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M10 9H9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 id="s4">Motion graphics</h3>
+          <p>Animaciones y recursos gráficos que comunican y convierten.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits" aria-labelledby="benefits-title" class="section-padding">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <div class="section-header">
+            <h2 id="benefits-title">Tu contenido merece generar resultados, no solo vistas.</h2>
+          </div>
+          
+          <div class="benefit-item-large">
+            <h3>Engagement que genera conversiones</h3>
+            <p class="muted">Nuestros motion graphics capturan atención inmediata y mantienen a tu audiencia comprometida, aumentando las tasas de conversión hasta en un 40%.</p>
+          </div>
+
+          <div class="benefit-item-large">
+            <h3>Comunicación clara y memorable</h3>
+            <p class="muted">Transforma conceptos complejos en mensajes visuales impactantes que tu audiencia recordará y compartirá.</p>
+          </div>
+
+          <div class="benefit-item-large">
+            <h3>Profesionalismo que inspira confianza</h3>
+            <p class="muted">Eleva la percepción de tu marca con contenido de calidad premium que diferencia tu negocio de la competencia.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>Ventajas exclusivas para tu crecimiento</h3>
+          <div class="benefits-grid">
+            <div class="benefit-item">
+              <div class="benefit-icon" aria-hidden="true">✓</div>
+              <div>
+                <strong>Videos que convierten</strong>
+                <div class="muted">Produzco piezas optimizadas para generar leads y ventas, no solo vistas.</div>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon" aria-hidden="true">✓</div>
+              <div>
+                <strong>Entrega express sin drama</strong>
+                <div class="muted">Archivos listos para publicar en 48–72 h con revisiones rápidas y coordinadas.</div>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon" aria-hidden="true">✓</div>
+              <div>
+                <strong>Edición estratégica por plataforma</strong>
+                <div class="muted">Versiones específicas (Reels, Shorts, TikTok) con formato, ritmo y estilo ideales.</div>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon" aria-hidden="true">✓</div>
+              <div>
+                <strong>Paquetes escalables y sin ataduras</strong>
+                <div class="muted">Desde un single edit puntual hasta retainer mensual con prioridad de entrega.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS - SOLO 3 TESTIMONIOS EN GRID -->
+  <section id="testimonials" aria-labelledby="testimonials-title" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="testimonials-title">Testimonios</h2>
+        <p class="section-sub">Resultados reales que hablan por sí solos</p>
+      </div>
+
+      <div class="testimonials-grid" role="list" aria-label="Testimonios de clientes">
+        <!-- SOLO 3 TESTIMONIOS EN FORMATO CARD VERTICAL -->
+        <div class="testimonial-card" role="listitem" tabindex="0">
+          <div class="testimonial-content">
+            <div class="testimonial-text">
+              "Trabajar con Ariel es sinónimo de compromiso. Siempre responde a tiempo, entrega dentro del plazo y cuida cada detalle de la edición. Es un editor en el que realmente podés confiar."
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="images/testimonio1.jpg" alt="Foto de Ángelo" loading="lazy">
+              </div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">Ángelo</div>
+                <div class="testimonial-role">Jefe de equipo de editores</div>
+              </div>
+            </div>
+            <div class="rating" aria-label="Calificación: 5 estrellas">★★★★★</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" role="listitem" tabindex="0">
+          <div class="testimonial-content">
+            <div class="testimonial-text">
+              "Responde rápido al feedback y lo aplica con criterio. Nunca hace cambios a ciegas: siempre explica por qué propone una opción u otra, y eso agiliza mucho el cierre del proyecto."
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="images/testimonio2.jpg" alt="Foto de Marcelo" loading="lazy">
+              </div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">Marcelo</div>
+                <div class="testimonial-role">Content Specialist</div>
+              </div>
+            </div>
+            <div class="rating" aria-label="Calificación: 5 estrellas">★★★★★</div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" role="listitem" tabindex="0">
+          <div class="testimonial-content">
+            <div class="testimonial-text">
+              "Es raro encontrar alguien que entienda tan rápido el estilo de uno. Ariel le dio una identidad a mis videos y mis seguidores lo notaron enseguida."
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="images/testimonio3.jpg" alt="Foto de Jorge" loading="lazy">
+              </div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">Jorge</div>
+                <div class="testimonial-role">Creador de contenido</div>
+              </div>
+            </div>
+            <div class="rating" aria-label="Calificación: 5 estrellas">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="faq-title" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="faq-title">Preguntas Frecuentes</h2>
+        <p class="section-sub">Respuestas a las preguntas más comunes</p>
+      </div>
+
+      <div class="faq-list" id="faqList" role="list" aria-label="Lista de preguntas frecuentes">
+        <!-- Las preguntas se cargarán dinámicamente desde JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CON FONDO DE PARTÍCULAS -->
+  <section id="contact" aria-labelledby="contact-title" class="section-padding" style="position: relative; overflow: hidden;">
+    <!-- Canvas para partículas -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <div class="container contact-content">
+      <div class="section-header">
+        <h2 id="contact-title">¿Listo para llevar tu empresa al siguiente nivel?</h2>
+      </div>
+
+      <div class="contact-simple">
+        <div class="contact-buttons">
+          <!-- Botón de Email - Ahora abre el modal -->
+          <button class="btn-email" id="openEmailModal" aria-label="Abrir formulario de contacto">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M2.00333 5.88355L9.99995 9.88186L17.9967 5.8835C17.9363 4.83315 17.0655 4 16 4H4C2.93452 4 2.06363 4.83318 2.00333 5.88355Z"/>
+              <path d="M18 8.1179L9.99995 12.1179L2 8.11796V14C2 15.1046 2.89543 16 4 16H16C17.1046 16 18 15.1046 18 14V8.1179Z"/>
+            </svg>
+            <span>Enviar Email</span>
+          </button>
+          
+          <!-- Botón de Agendar Llamada - Azul -->
+          <a class="btn-schedule" href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/amesaedits01/new-meeting'});return false;" aria-label="Agendar llamada">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M2 3C2 2.44772 2.44772 2 3 2H5.15287C5.64171 2 6.0589 2.35341 6.13927 2.8356L6.87858 7.27147C6.95075 7.70451 6.73206 8.13397 6.3394 8.3303L4.79126 9.10437C5.90777 11.8787 8.12131 14.0922 10.8956 15.2087L11.6697 13.6606C11.866 13.2679 12.2955 13.0492 12.7285 13.1214L17.1644 13.8607C17.6466 13.9411 18 14.3583 18 14.8471V17C18 17.5523 17.5523 18 17 18H15C7.8203 18 2 12.1797 2 5V3Z"/>
+            </svg>
+            <span>Agendar Llamada</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-simple">
+        <div class="footer-copyright">
+          <p>Todos los derechos reservados © <span id="year"></span></p>
+        </div>
+        <div class="footer-socials">
+          <a href="https://wa.me/19782377542" aria-label="WhatsApp" class="social-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893c0-3.18-1.24-6.169-3.495-8.424"/>
+            </svg>
+          </a>
+          <a href="https://discordapp.com/users/1332774899961561144" aria-label="Discord" class="social-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.18.33.25c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/messages/compose?recipient_id=1882082952500166656" aria-label="Twitter" class="social-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.033 10.033 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE CONTACTO -->
+  <div id="emailModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-content" role="document">
+      <button class="modal-close" id="closeEmailModal" aria-label="Cerrar modal">×</button>
+      <h2 class="modal-title" id="modalTitle">Envíanos un mensaje</h2>
+
+      <!-- Formulario sin iframe -->
+      <form id="modalContactForm" novalidate>
+        <div class="form-group">
+          <label for="fullName" class="form-label">Nombre completo</label>
+          <input type="text" id="fullName" name="fullName" class="form-input" placeholder="Tu nombre completo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="tu.email@ejemplo.com" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tipo de proyecto</label>
+          <div class="radio-group" role="radiogroup" aria-label="Tipo de proyecto">
+            <div class="radio-option">
+              <input type="radio" id="projectType1" name="projectType" value="Edición de reels" class="radio-input" required>
+              <label for="projectType1" class="radio-label">Edición de reels</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="projectType2" name="projectType" value="Video para curso online" class="radio-input">
+              <label for="projectType2" class="radio-label">Video para curso online</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="projectType3" name="projectType" value="Video de marca personal" class="radio-input">
+              <label for="projectType3" class="radio-label">Video de marca personal</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="projectType4" name="projectType" value="Animación de logo" class="radio-input">
+              <label for="projectType4" class="radio-label">Animación de logo</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="projectType5" name="projectType" value="Otro" class="radio-input">
+              <label for="projectType5" class="radio-label">Otro tipo de proyecto</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="budget" class="form-label">Presupuesto estimado (USD)</label>
+          <select id="budget" name="budget" class="form-select" required>
+            <option value="" disabled selected>Selecciona tu presupuesto</option>
+            <option value="100-300">$100 - $300</option>
+            <option value="300-500">$300 - $500</option>
+            <option value="500-1000">$500 - $1000</option>
+            <option value="1000+">$1000+</option>
+            <option value="Por definir">Por definir</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Cuéntame sobre tu proyecto y lo que necesitas..." required></textarea>
+        </div>
+
+        <button type="submit" id="modalSubmitBtn" class="form-submit">Enviar mensaje</button>
+      </form>
+
+      <!-- Mensaje de respuesta -->
+      <div id="modalFormResponse" class="form-response" aria-live="polite" style="margin-top:1rem;"></div>
+    </div>
+  </div>
+
+  <!-- Link to separated JS (si lo usas) -->
+  <script src="script.js" defer></script>
+
+  <!-- Scripts para Instagram y controles de video -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Script para controlar los videos de Vimeo
+      function initVideoControls() {
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+        
+        videoWrappers.forEach((wrapper, index) => {
+          const iframe = wrapper.querySelector('iframe');
+          const playPauseBtn = wrapper.querySelector('.play-pause-btn');
+          const playIcon = wrapper.querySelector('.play-icon');
+          const pauseIcon = wrapper.querySelector('.pause-icon');
+          
+          if (!iframe || !playPauseBtn) return;
+          
+          // Verificar si es un iframe de Vimeo
+          const isVimeo = iframe.src.includes('vimeo.com');
+          
+          let player = null;
+          let isPlaying = false;
+          
+          // Función para crear un controlador de Vimeo
+          function setupVimeoPlayer() {
+            if (!isVimeo) return;
+            
+            // Agregar parámetros para asegurar que no se autoplay
+            if (!iframe.src.includes('autoplay=0')) {
+              iframe.src += (iframe.src.includes('?') ? '&' : '?') + 'autoplay=0';
+            }
+            
+            // Inicializar player de Vimeo con API
+            if (typeof Vimeo !== 'undefined') {
+              player = new Vimeo.Player(iframe);
+              
+              player.on('play', function() {
+                isPlaying = true;
+                wrapper.classList.add('playing');
+                if (playIcon) playIcon.style.display = 'none';
+                if (pauseIcon) pauseIcon.style.display = 'block';
+              });
+              
+              player.on('pause', function() {
+                isPlaying = false;
+                wrapper.classList.remove('playing');
+                if (playIcon) playIcon.style.display = 'block';
+                if (pauseIcon) pauseIcon.style.display = 'none';
+              });
+              
+              player.on('ended', function() {
+                isPlaying = false;
+                wrapper.classList.remove('playing');
+                if (playIcon) playIcon.style.display = 'block';
+                if (pauseIcon) pauseIcon.style.display = 'none';
+              });
+            }
+          }
+          
+          // Configurar eventos para el botón de play/pause
+          playPauseBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (isVimeo) {
+              if (player) {
+                if (isPlaying) {
+                  player.pause();
+                } else {
+                  player.play();
+                }
+              } else {
+                // Si no hay player configurado, intentar crear uno
+                setupVimeoPlayer();
+                if (player) {
+                  player.play();
+                }
+              }
+            }
+            // Para Instagram, el control está integrado en el embed
+          });
+          
+          // Configurar eventos para pausar al hacer clic en el video
+          wrapper.addEventListener('click', function(e) {
+            if (e.target !== playPauseBtn && isPlaying && isVimeo && player) {
+              player.pause();
+            }
+          });
+          
+          // Inicializar player de Vimeo si corresponde
+          if (isVimeo) {
+            // Esperar a que Vimeo Player API esté disponible
+            if (typeof Vimeo !== 'undefined') {
+              setupVimeoPlayer();
+            } else {
+              // Cargar Vimeo Player API si no está disponible
+              const vimeoScript = document.createElement('script');
+              vimeoScript.src = 'https://player.vimeo.com/api/player.js';
+              vimeoScript.onload = setupVimeoPlayer;
+              document.body.appendChild(vimeoScript);
+            }
+          }
+        });
+      }
+
+      // Inicializar controles de video
+      initVideoControls();
+
+      // Cargar script de Instagram
+      if (!window.instgrm) {
+        const instagramScript = document.createElement('script');
+        instagramScript.src = 'https://www.instagram.com/embed.js';
+        instagramScript.async = true;
+        document.body.appendChild(instagramScript);
+      }
+
+      // Año actual en el footer
+      const yearSpan = document.getElementById('year');
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+    });
+  </script>
+
+  <!-- JavaScript para el modal y envío -->
+  <script>
+    (function () {
+      // --- CONFIG: pon aquí la URL correcta de tu deployment de Apps Script (debe terminar en /exec) ---
+      const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxFIe7nQ2TghhRmG4xNYSfiXKUnNnyGreHFwnPHYG7g4xDkWZEXrMhZj4W0vqBx547a/exec';
+
+      // Elementos
+      const modal = document.getElementById('emailModal');
+      const openBtn = document.getElementById('openEmailModal'); // si lo tienes en otro sitio, mantén el id o ajusta
+      const closeBtn = document.getElementById('closeEmailModal');
+      const form = document.getElementById('modalContactForm');
+      const responseDiv = document.getElementById('modalFormResponse');
+      const submitBtn = document.getElementById('modalSubmitBtn');
+
+      let isSubmitting = false;
+
+      // Funciones para abrir/cerrar modal (expuestas para usar desde otros botones si necesitas)
+      function openModal() {
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        clearResponseMessage();
+      }
+      function clearResponseMessage() {
+        responseDiv.textContent = '';
+        responseDiv.className = 'form-response';
+      }
+
+      // Agregar listeners si el botón existe
+      if (openBtn) {
+        openBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal();
+        });
+      } else {
+        // Si no existe openBtn, exponer función para poder llamarla desde otros elementos
+        console.warn('openEmailModal no encontrado. Si quieres abrir el modal desde otro botón, llama a window.openEmailModal() o añade un elemento con id="openEmailModal".');
+        window.openEmailModal = openModal;
+      }
+
+      // Cerrar modal
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      // Cerrar clic fuera del contenido
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) closeModal();
+      });
+
+      // Cerrar con Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+      });
+
+      // Form submit
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (isSubmitting) return;
+
+        // Leer valores
+        const nameVal = (form.fullName.value || '').trim();
+        const emailVal = (form.email.value || '').trim();
+        const projectTypeEl = form.querySelector('input[name="projectType"]:checked');
+        const projectTypeVal = projectTypeEl ? projectTypeEl.value : '';
+        const budgetVal = (form.budget.value || '').trim();
+        const messageVal = (form.message.value || '').trim();
+
+        // Validaciones (cliente)
+        const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!nameVal) return showError('Por favor ingresa tu nombre completo');
+        if (!emailVal) return showError('Por favor ingresa tu correo electrónico');
+        if (!emailRx.test(emailVal)) return showError('El correo electrónico no es válido');
+        if (!projectTypeVal) return showError('Por favor selecciona un tipo de proyecto');
+        if (!budgetVal) return showError('Por favor selecciona un presupuesto estimado');
+        if (!messageVal) return showError('Por favor escribe un mensaje');
+
+        // Preparar datos
+        isSubmitting = true;
+        submitBtn.disabled = true;
+        responseDiv.textContent = 'Enviando mensaje...';
+        responseDiv.className = 'form-response';
+
+        try {
+          // Usamos URLSearchParams para application/x-www-form-urlencoded
+          const payload = new URLSearchParams();
+          payload.append('fullName', nameVal);
+          payload.append('email', emailVal);
+          payload.append('projectType', projectTypeVal);
+          payload.append('budget', budgetVal);
+          payload.append('message', messageVal);
+          payload.append('_subject', 'Nuevo mensaje desde tu portafolio');
+
+          console.log('Enviando payload a Apps Script:', Object.fromEntries(payload.entries()));
+
+          const resp = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'Accept': 'application/json'
+            },
+            body: payload.toString()
+          });
+
+          if (!resp.ok) {
+            // Si Google responde 302/303 con HTML de login o redirección puede pasar; mostramos el status
+            throw new Error('HTTP ' + resp.status + ' ' + resp.statusText);
+          }
+
+          // Intentar parsear JSON (algunos deployments de Apps Script pueden devolver texto)
+          let result;
+          try {
+            result = await resp.json();
+          } catch (jsonErr) {
+            // fallback: leer texto
+            const txt = await resp.text();
+            console.warn('Respuesta no JSON:', txt);
+            // Intentar extraer JSON dentro de texto si existe
+            try { result = JSON.parse(txt); } catch (e) { result = { status: 'error', message: 'Respuesta inesperada del servidor' }; }
+          }
+
+          console.log('Resultado del servidor:', result);
+
+          if (result && result.status === 'success') {
+            responseDiv.textContent = result.message || 'Mensaje enviado correctamente';
+            responseDiv.className = 'form-response success';
+            form.reset();
+            // cerrar modal tras un pequeño delay
+            setTimeout(closeModal, 2000);
+          } else {
+            showError(result && result.message ? result.message : 'Error al enviar el mensaje');
+          }
+
+        } catch (err) {
+          console.error('Error en el envío:', err);
+          showError('Error de conexión. Por favor intenta nuevamente.');
+        } finally {
+          isSubmitting = false;
+          submitBtn.disabled = false;
+        }
+      });
+
+      // helpers
+      function showError(msg) {
+        responseDiv.textContent = msg;
+        responseDiv.className = 'form-response error';
+      }
+
+    })();
+  </script>
+
+</body>
+</html>
